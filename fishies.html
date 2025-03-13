@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Floating Fish Scene</title>
+  </head>
+
+  <style>
+    /* Basic page setup */
+    /* Basic page setup */
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Layer 1: Background image */
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .background {
+      background-image: url("img/water.png");
+    }
+
+    /* Layer 2: Fishies1 (swimming fish, moves right to left) */
+    .fishies1 {
+      background-image: url("img/fishies1.png");
+      animation: swim 12s linear infinite;
+      position: absolute;
+    }
+
+    @keyframes swim {
+      0% {
+        left: 100%;
+      }
+      100% {
+        left: -100%;
+      }
+    }
+
+    /* Layer 3: Floating Ice Rock (jiggles a little) */
+    .ice-rock {
+      background-image: url("img/ice.png");
+      animation: float 4s ease-in-out infinite,
+        rotate 6s linear infinite reverse;
+      position: absolute;
+      left: 50%;
+    }
+
+    @keyframes float {
+      0% {
+        top: 0%;
+      }
+      50% {
+        top: 2%;
+      }
+      100% {
+        top: 0%;
+      }
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+      33% {
+        transform: translateX(-50%) rotate(2deg);
+      }
+      66% {
+        transform: translateX(-50%) rotate(-2deg);
+      }
+      100% {
+        transform: translateX(-50%) rotate(0deg);
+      }
+    }
+
+    /* Layer 4: Fishies2 (same animation as Fishies1, but on top) */
+    .fishies2 {
+      background-image: url("img/fishies2.png");
+      animation: swim 10s linear infinite;
+      position: absolute;
+    }
+  </style>
+  <body>
+    <div class="scene">
+      <div class="layer background"></div>
+      <div class="layer fishies1"></div>
+      <div class="layer ice-rock"></div>
+      <div class="layer fishies2"></div>
+    </div>
+  </body>
+</html>
