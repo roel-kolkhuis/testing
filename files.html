@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Info</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: black;
+        background: transparent; /* Ensure transparency for embedding */
+      }
+      .traffic-container {
+        max-width: 600px;
+        margin: 0;
+      }
+      .traffic-card {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .traffic-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+      .traffic-icon svg {
+        width: 40px;
+        height: 40px;
+        fill: #ff0000;
+      }
+      .road-name {
+        background-color: #ff0000;
+        color: white;
+        padding: 5px;
+        font-size: 14px;
+        border-radius: 3px;
+        text-align: center;
+      }
+      .traffic-info {
+        flex-grow: 1;
+      }
+      .traffic-title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .traffic-details {
+        color: #555;
+      }
+      .traffic-time {
+        font-weight: bold;
+        color: #d9534f;
+      }
+      .arrow {
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+        transform: rotate(-45deg);
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="traffic-container" id="traffic-list">
+      <p>Loading traffic data...</p>
+    </div>
+
+    <script>
+      async function fetchTrafficData() {
+        try {
+          const response = await fetch(
+            "https://corsproxy.io/?url=" +
+              encodeURIComponent("https://api.rwsverkeersinfo.nl/api/traffic/")
+          );
+          if (!response.ok) throw new Error("Network response was not OK");
+          const data = await response.json();
+          displayTrafficData(data);
+        } catch (error) {
+          console.error("Error fetching traffic data:", error);
+          document.getElementById("traffic-list").innerHTML =
+            "<p>Failed to load traffic data.</p>";
+        }
+      }
+      function displayTrafficData(data) {
+        const container = document.getElementById("traffic-list");
+        container.innerHTML = ""; // Clear previous content
+        console.log(data.obstructions);
+        data.obstructions.forEach((item) => {
+          if (item.delay > 0 && item.length > 0) {
+            const card = document.createElement("div");
+            card.classList.add("traffic-card");
+
+            card.innerHTML = `
+                <div class="traffic-icon">
+                    <svg viewBox="0 0 64 64">
+                        <path d="M41.453 21c8.082.02 11.798.59 12.87 1.711.816.85 2.213 3.624 3.015 6.516 1.036-.147 2.356-.26 2.975-.14 1.4.272 1.64 1.718 1.274 2.556-.174.401-.809 1.21-1.793 1.886C61.399 35.689 62 37.16 62 40.652v9.55c-.01.182-.143 2.846-.52 4.64-.142.677-.899 1.158-1.621 1.158h-5.86c-.722 0-1.348-.74-1.49-1.417-.218-1.038-.322-1.692-.446-3.583H29.937c-.125 1.89-.228 2.545-.445 3.583C29.349 55.26 28.722 56 28 56h-5.86c-.721 0-1.478-.481-1.62-1.158-.39-1.858-.52-4.65-.52-4.65v-9.54c0-3.492.6-4.963 2.206-7.123-.984-.676-1.619-1.485-1.793-1.885-.367-.839-.126-2.285 1.274-2.556.62-.12 1.939-.008 2.974.14.803-2.893 2.2-5.666 3.015-6.517C28.769 21.571 32.603 21 41 21zM47 46H35v2h12v-2zm-21.377-7.313c-.877-.243-1.765.491-1.64 1.356l.2 1.4c.243 1.158 1.054 2.214 2.378 2.32l4.884.39c.292.024.533-.24.46-.508l-.541-2.012c-.277-.844-.927-1.516-1.787-1.847zm32.395 1.356c.124-.865-.764-1.6-1.64-1.355l-3.955 1.098c-.86.331-1.51 1.003-1.787 1.847l-.542 2.012c-.072.267.169.532.46.508l4.886-.39c1.323-.106 2.134-1.162 2.377-2.32zM27 10h.427c6.9.02 10.075.508 10.993 1.467.7.729 1.897 3.106 2.584 5.585.888-.126 2.02-.223 2.55-.12 1.057.205 1.342 1.191 1.18 1.915a146.153 146.153 0 0 0-6.608-.018c-.644-2.092-1.523-4.555-1.807-5.037-.408-.203-3.34-.547-8.916-.562h-.806c-5.576.015-8.508.359-8.916.562-.413.702-2.089 5.606-2.465 7.444 1.828.508 5.984.872 10.103.953-.758 1.153-1.564 2.84-2.213 4.67-.582-.033-1.267-.043-1.838.07-.89.171-1.64.61-2.2 1.246l-.148.179-.18-.669a2.544 2.544 0 0 0-1.35-1.506l-.181-.077-3.39-.941c-.713-.199-1.436.36-1.415 1.051l.01.11.172 1.2c.196.938.827 1.797 1.852 1.966l.185.023 3.574.285c-.232.9-.168 1.885.2 2.728.186.426.502.897.92 1.369-.275.474-.503.952-.695 1.447l-.138.374h-.967c-.106 1.62-.195 2.182-.381 3.071-.114.542-.59 1.13-1.156 1.207l-.123.008h-5.022c-.619 0-1.268-.413-1.39-.992-.322-1.536-.437-3.816-.445-3.977v-8.186c0-2.993.515-4.254 1.891-6.106-.844-.58-1.388-1.273-1.537-1.616-.314-.719-.108-1.959 1.092-2.19.53-.104 1.662-.007 2.55.119.687-2.479 1.885-4.856 2.583-5.585.919-.959 4.093-1.447 10.994-1.466h.854zm14.43 14.768h-.86c-6.531.017-9.965.418-10.442.655-.482.82-2.437 6.541-2.877 8.686 2.425.674 8.358 1.131 13.749 1.131l.45-.001c5.268-.024 10.942-.475 13.298-1.13-.44-2.145-2.394-7.866-2.876-8.686-.487-.242-4.062-.656-10.872-.656zM15 0h.404c5.717.019 8.35.426 9.113 1.222.582.608 1.58 2.589 2.153 4.654.74-.104 1.683-.185 2.125-.1 1 .194 1.172 1.228.91 1.827-.026.06-.075.14-.13.223a127.328 127.328 0 0 0-5.16 0c-.542-1.822-1.391-4.228-1.65-4.666-.347-.174-2.9-.47-7.765-.47s-7.418.296-7.766.47c-.344.585-1.74 4.672-2.054 6.204 1.554.431 5.126.738 8.626.796-.762.908-1.661 2.627-2.36 4.537-.54-.022-1.033 0-1.42.076-.567.11-1.069.342-1.501.664l-.181.143-.227-.842a2.118 2.118 0 0 0-1.113-1.249l-.163-.07-2.825-.785c-.589-.164-1.186.291-1.18.86l.008.108.144 1c.163.775.682 1.487 1.525 1.635l.173.022 2.885.23c-.034.057-.079.103-.11.162a3.96 3.96 0 0 0-.123 3.353c.15.345.39.72.696 1.09l-.087.167-.084.168h-.765c-.09 1.35-.163 1.818-.318 2.559-.094.446-.483.93-.948 1.003L5.714 25H1.53c-.516 0-1.056-.344-1.158-.827-.267-1.272-.363-3.156-.37-3.311L0 14.037c0-2.494.43-3.545 1.576-5.088C.873 8.466.419 7.89.295 7.603c-.262-.6-.09-1.633.91-1.826.442-.086 1.385-.005 2.125.1C3.903 3.81 4.9 1.83 5.483 1.221 6.246.426 8.879.02 14.596.001h.808z" fill="currentColor"></path>
+                    </svg>
+                    <div class="road-name">${item.roadNumber}</div>
+                </div>
+                <div class="traffic-info">
+                    <div class="traffic-title">${item.title}</div>
+                    <div class="traffic-details">${(item.length / 1000).toFixed(
+                      1
+                    )}km -
+                        <span class="traffic-time">${item.delay} min</span>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+          }
+        });
+        //   const card = document.createElement("div");
+        //   card.classList.add("traffic-card");
+        //   console.log(item);
+        //   card.innerHTML = `
+        //             <div class="traffic-info">
+        //                 <div class="traffic-title">${item.title}</div>
+        //                 <div class="traffic-details">${
+        //                   item.length / 1000
+        //                 }km - <span class="traffic-time">${
+        //     item.delay
+        //   } min</span></div>
+        //                 <div class="traffic-details">${item.roadNumber}</div>
+        //             </div>
+        //         `;
+
+        //   if (item.delay > 0 && item.length > 0) container.appendChild(card);
+        // });
+      }
+
+      fetchTrafficData();
+      setInterval(fetchTrafficData, 60000); // Refresh every 60 seconds
+    </script>
+  </body>
+</html>
