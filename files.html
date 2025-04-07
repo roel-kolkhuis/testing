@@ -7,7 +7,7 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        color: black;
+        color: #0c2e53;
         background: transparent; /* Ensure transparency for embedding */
       }
       .traffic-container {
@@ -23,7 +23,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: 900;
+        font-weight: 700;
       }
       .traffic-icon {
         display: flex;
@@ -31,6 +31,8 @@
         align-items: center;
         justify-content: center;
         margin-right: 15px;
+        color: #244e7b;
+        width: 40px;
       }
       .traffic-icon svg {
         width: 20px;
@@ -46,25 +48,41 @@
         padding-right: 5px;
         font-size: 14px;
         border-radius: 3px;
+        min-width: 22px;
         text-align: center;
       }
       .traffic-info {
         flex-grow: 1;
       }
       .traffic-title {
-        font-size: 18px;
-        font-weight: 900;
-      }
-      .traffic-subtitle {
-        font-size: 14px;
+        font-size: 24px;
         font-weight: 700;
       }
-      .traffic-details {
-        color: #555;
+      .traffic-subtitle {
+        margin-top: 2px;
+        font-size: 18px;
+        font-weight: 700;
       }
       .traffic-time {
-        font-weight: 900;
-        color: #c0211b;
+        font-weight: 600;
+        color: #000000;
+        background-color: #fdc360;
+        border-radius: 3px;
+        padding: 2px 5px;
+        margin-left: 5px;
+      }
+      .traffic-details {
+        margin-left: 4px;
+        vertical-align: middle;
+        font-size: 18px;
+        color: #555;
+        font-weight: 600;
+      }
+      .traffic-location {
+        margin-top: 4px;
+        font-size: 15px;
+        color: #000000;
+        font-weight: 500;
       }
       .arrow {
         width: 10px;
@@ -94,6 +112,7 @@
             .filter((item) => item.delay > 0 && item.length > 0) // Alleen relevante items behouden
             .sort((a, b) => b.delay - a.delay); // Sorteren op aflopende vertraging
 
+          console.log(sortedObstructions);
           displayTrafficData(sortedObstructions);
         } catch (error) {
           console.error("Error fetching traffic data:", error);
@@ -107,6 +126,14 @@
         data.forEach((item) => {
           const card = document.createElement("div");
           card.classList.add("traffic-card");
+          // Calculate background color based on delay
+          const delayColor =
+            item.delay < 3
+              ? "yellow"
+              : item.delay > 30
+              ? "red"
+              : `rgb(255, ${255 - (item.delay - 3) * 8}, 0)`; // Gradient mapping
+
           card.innerHTML = `
                 <div class="traffic-icon">
                     <svg viewBox="0 0 64 64">
@@ -115,12 +142,20 @@
                     <div class="road-name">${item.roadNumber}</div>
                 </div>
                 <div class="traffic-info">
-                    <div class="traffic-title">${item.directionText}</div>
-                    <div class="traffic-subtitle">${item.title}</div>
-                    <div class="traffic-details">${(item.length / 1000).toFixed(
-                      1
-                    )}km -
-                        <span class="traffic-time">${item.delay} min</span>
+                    <div class="traffic-title">
+                      ${item.title}
+                      <span class="traffic-details">(${(
+                        item.length / 1000
+                      ).toFixed(1)}km)</span>
+                      </div>
+                    <div class="traffic-subtitle">
+                      ${item.directionText}
+                      <span class="traffic-time" style="background-color: ${delayColor};">${
+            item.delay
+          } min</span>
+                    </div>
+                    <div class="traffic-location">
+                      ${item.locationText}
                     </div>
                 </div>
             `;
