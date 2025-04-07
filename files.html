@@ -136,9 +136,9 @@
                 <div class="traffic-info">
                     <div class="traffic-title">
                       ${item.title}
-                      <span class="traffic-details">(${(
+                      <span class="traffic-details">${(
                         item.length / 1000
-                      ).toFixed(1)}km)</span>
+                      ).toFixed(1)}km</span>
                       </div>
                     <div class="traffic-subtitle">
                       ${item.directionText}
@@ -161,25 +161,22 @@
 
       function startAutoScroll() {
         const container = document.getElementById("traffic-list"); // Make sure this ID exists
-        if (container.scrollHeight <= window.innerHeight) return; // No need to scroll
+        console.log(
+          "scrollheight:" +
+            container.scrollHeight +
+            ", innerheight:" +
+            window.innerHeight
+        );
+        if (container.scrollHeight <= 680) return; // No need to scroll
 
         let scrollAmount = 1; // Pixels per step
-        let scrollSpeed = 20; // Milliseconds per step
+        let scrollSpeed = 50; // Milliseconds per step
 
         function scrollDown() {
-          console.log("scroll");
-          if (
-            window.scrollY + window.innerHeight >=
-            document.documentElement.scrollHeight
-          ) {
-            window.scrollTo({ top: 100000, behavior: "smooth" }); // Reset to top
-          } else {
-            window.scrollTo({
-              top: window.scrollY + scrollAmount,
-              behavior: "smooth",
-            });
-            // window.scrollBy(0, scrollAmount); // Scroll the page down
-          }
+          window.scrollTo({
+            top: window.scrollY + scrollAmount,
+            behavior: "smooth",
+          });
         }
 
         setInterval(scrollDown, scrollSpeed);
