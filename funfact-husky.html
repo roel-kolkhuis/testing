@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 3rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 20%;
+        left: 20%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 14s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 1s, 13s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "Een goed getrainde husky kan tot wel 150 kilometer per dag rennen, zelfs bij temperaturen ver onder het vriespunt.",
+        "Husky’s slapen vaak opgerold met hun staart over hun neus – dat helpt ze om warmte vast te houden.",
+        "Husky’s blaffen zelden – ze communiceren liever door te janken, huilen of ‘praten’ met hun baasjes.",
+        "Husky’s hebben buitengewoon uithoudingsvermogen – ze werden vroeger ingezet voor levensreddende medicijntransporten in barre omstandigheden.",
+        "De Siberische husky is ongelooflijk energiek en kan dagenlang rennen zonder moe te worden.",
+        "Husky’s hebben een dubbele vacht die hen warm houdt tot wel -50°C.",
+        "Husky's hebben een superieur richtingsgevoel – zelfs in witte sneeuwstormen vinden ze de weg terug.",
+        "Ondanks hun wolvenachtige uiterlijk, zijn husky’s bijzonder vriendelijk en zelden agressief.",
+        "Husky’s graven vaak kuilen in de sneeuw om in te slapen – dit houdt hen geïsoleerd tegen de kou.",
+        "Ze staan bekend als echte ontsnappingskunstenaars – een hek is geen uitdaging voor een nieuwsgierige husky.",
+        "De vacht van een husky verhaart twee keer per jaar extreem – dit heet “blowing the coat”.",
+        "Een husky kan het pad van een andere hond volgen via geur, zelfs als het spoor bedekt is door verse sneeuw.",
+        "Husky’s kunnen zelfs “lachen” – hun typische uitdrukking met opgetrokken mondhoeken ziet er altijd vrolijk uit.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>

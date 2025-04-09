@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 3rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 20%;
+        left: 20%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 14s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 1s, 13s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "Rendieren zijn de enige hertachtigen waarbij zowel mannetjes als vrouwtjes een gewei hebben!",
+        "De hoeven van rendieren veranderen met de seizoenen: in de winter worden ze harder en scherper, zodat ze beter over ijs kunnen lopen.",
+        "Rendieren kunnen UV-licht zien – dat helpt ze om voedsel te vinden in de sneeuw én roofdieren te spotten.",
+        "Poolvossen volgen vaak ijsberen op afstand, om restjes van hun prooien op te eten.",
+        "In Fins Lapland leven er meer rendieren dan mensen.",
+        "Rendieren hebben een klikgeluid in hun gewrichten zodat ze elkaar kunnen volgen in een sneeuwstorm!",
+        "De eland is het grootste lid van de hertenfamilie – sommige mannetjes wegen meer dan 700 kilo!",
+        "Elanden zijn uitstekende zwemmers – ze steken moeiteloos meren en rivieren over, zelfs met hun enorme formaat.",
+        "Een elandgewei kan tot 1,80 meter breed worden – breder dan de meeste mensen lang zijn.",
+        "Elanden zijn stil en teruggetrokken, maar kunnen verrassend agressief reageren als ze zich bedreigd voelen.",
+        "Rendieren kunnen zwemmen, en vrij goed ook – ze steken meren en rivieren over tijdens hun migraties.",
+        "Rendieren eten vooral korstmossen, die ze met hun hoeven onder de sneeuw vandaan schrapen.",
+        'De "kerstman-mythe" met vliegende rendieren komt oorspronkelijk voort uit Laplandse verhalen en sjamanisme.',
+        "De bovenlip van de eland is extreem flexibel en wordt gebruikt om takken en bladeren te grijpen – bijna als een soort kleine slurf.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>
