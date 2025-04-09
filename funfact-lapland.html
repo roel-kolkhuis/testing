@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 5rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 30%;
+        left: 15%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 19s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 0.3s, 19s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "Rond 21 december start de periode van de poolnacht, waarbij de zon dagen- of wekenlang niet boven de horizon komt.",
+        "In de zomer is er de middernachtzon: de zon gaat wekenlang niet onder.",
+        "Lapland is de schoonste regio van Europa als het gaat om luchtkwaliteit.",
+        "Temperaturen kunnen dalen tot -40°C, maar door de droge lucht voelt het minder koud aan dan je denkt.",
+        "Fins Lapland beslaat één derde van heel Finland, maar slechts een fractie van de bevolking woont in Lapland.",
+        "In de winter komen ijswegen over het bevroren meer beschikbaar, sneller dan de normale weg.",
+        "Het sneeuwdek is gemiddeld 60-80cm dik in de winter.",
+        "De zon komt in Utsjoki, het noordelijkste dorp, 31 dagen niet op in december-januari.",
+        "Lapland heeft een laag geluidsniveau — het is een van de stilste plekken van Europa.",
+        "Rendiersleeën zijn wettelijk erkend als een vervoermiddel, net als fietsen of auto’s!",
+        "De Sami-bevolking is het enige inheemse volk binnen de EU.",
+        "In december kun je in Rovaniemi je brief persoonlijk afgeven bij het Kerstmanpostkantoor, en hij stuurt zelfs brieven terug!",
+        "In het donker worden reflectoren verplicht gedragen door voetgangers — zelfs kinderen dragen ze aan hun jas.",
+        "De Sami hebben 8 seizoenen in plaats van 4, elk met eigen veranderingen in natuur, licht en levensstijl.",
+        "Door de extreme kou dragen mensen vaak binnen nog thermokleding – huizen zijn goed geïsoleerd, maar de kou is genadeloos.",
+        "In sommige dorpen zijn er schoolbus sleeën – getrokken door sneeuwscooters.",
+        'Veel locals maken hun koffie boven open vuur met een "nokipannu", een zwarte ketel vol roet.',
+        "De meeste mensen in Lapland zijn meer dan 100 km van de dichtstbijzijnde stad verwijderd.",
+        "Een typische snack bij het kampvuur is een gegrild Laps broodje met kaas en jam.",
+        "Sommige Lapse meren produceren bij kou zingende of knallende geluiden, veroorzaakt door scheurend ijs.",
+        'Het is wettelijk toegestaan om in Finland bijna overal vrij te kamperen (het "allemansrecht").',
+        "In de bossen vind je gratis openbare vuurplaatsen, met hout geleverd door de gemeente.",
+        "IJshotels worden elk jaar opnieuw gebouwd, omdat ze volledig smelten in het voorjaar.",
+        "Je kunt ijskarten op bevroren meren. Driftplezier gegarandeerd!",
+        "De stad Rovaniemi is verwoest tijdens de Tweede Wereldoorlog, en heropgebouwd in de vorm van een rendierhoofd.",
+        "Sneeuwmobielen zijn net zo normaal als auto’s – je hebt zelfs rijbewijsregels en verkeersborden voor ze.",
+        "Rendierhart wordt soms rauw gegeten – als een delicatesse.",
+        "Er zijn wintermarathons en hardloopwedstrijden bij -20°C – inclusief warme soep bij de finish.",
+        "Je telefoon batterij gaat bij -30°C vaak binnen 30 minuten leeg, tenzij je hem tegen je lichaam draagt.",
+        "In de winter worden auto’s ingeplugd aan verwarmingspalen om de motor warm te houden — anders start hij niet.",
+        "In Lapland worden regelmatig sneeuwschoenraces gehouden — hardlopen door diepe sneeuw op speciale schoenen.",
+        "Finland heeft meer sauna’s dan auto’s – en in Lapland vind je zelfs sneeuwsauna’s en ijssauna’s.",
+        "IJsdriften met rally-auto’s op bevroren meren is een populaire activiteit voor waaghalzen.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>
