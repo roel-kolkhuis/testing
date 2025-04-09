@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 3rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 20%;
+        left: 20%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 14s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 1s, 13s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "Een poolvos had ooit een nestje van maar liefst 22 jongen – een record in de dierenwereld!",
+        "De vacht van een poolvos verandert met de seizoenen: wit in de winter en bruin of grijs in de zomer – voor perfecte camouflage.",
+        "Poolvossen kunnen temperaturen tot -50°C overleven – ze hebben een van de warmste vachten in het dierenrijk.",
+        "Poolvossen volgen vaak ijsberen op afstand, om restjes van hun prooien op te eten.",
+        "De poolvos de warmste vacht heeft van alle zoogdieren die in de poolgebieden leven.",
+        "De oren van de poolvos zijn klein en rond om warmteverlies te beperken – een slim staaltje evolutie.",
+        "Poolvossen kunnen tot wel 1.500 kilometer per jaar afleggen op zoek naar voedsel.",
+        "Poolvossen gebruiken hun staart als deken om hun neus warm te houden tijdens het slapen.",
+        "De poolvos kan tot wel 60 km/u rennen als het nodig is – snel voor zo’n klein dier!",
+        "Poolvossen leven vaak in grote holen die meerdere generaties gebruiken – sommige holen zijn meer dan 100 jaar oud!",
+        "De poten van de poolvos zijn bedekt met vacht, zelfs onder de voetzolen – dat biedt grip én isolatie op ijs.",
+        "Poolvossen zijn monogaam en blijven meestal bij dezelfde partner.",
+        "Poolvossen zijn kampioenen in overleven – ze kunnen weken zonder voedsel en hebben een traag metabolisme om energie te besparen.",
+        "Poolvossen in IJsland en Lapland zijn genetisch verschillend – ze hebben zich aangepast aan lokale omstandigheden.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>

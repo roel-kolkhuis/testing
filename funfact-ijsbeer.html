@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 3rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 20%;
+        left: 20%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 14s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 1s, 13s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "De huid van een ijsbeer is zwart, niet wit – dat helpt om warmte beter te absorberen van de zon.",
+        "De vacht van een ijsbeer is eigenlijk doorzichtig – het lijkt wit doordat het licht reflecteert.",
+        "IJsberen zijn zeer goede zwemmers – ze kunnen meer dan 100 kilometer non-stop zwemmen in ijskoud water.",
+        "Een volwassen mannetjesijsbeer kan tot wel 700 kilo wegen – net zoveel als een kleine auto.",
+        "IJsberen gebruiken hun enorme poten niet alleen om te lopen, maar ook als peddels tijdens het zwemmen.",
+        "De poten van ijsberen zijn tot wel 30 cm breed – dat werkt als natuurlijke sneeuwschoenen.",
+        "IJsberen hebben zo’n goed reukvermogen dat ze een zeehond kunnen ruiken op 1,6 kilometer afstand.",
+        "Ze jagen voornamelijk op zeehonden en wachten soms uren bij een ademgat in het ijs om toe te slaan.",
+        "IJsberen kunnen een snelheid van 40 km/u halen op korte afstand – sneller dan je zou denken!",
+        "IJsberen glijden soms expres over ijshellingen – deels om snel af te dalen, deels voor de lol.",
+        "IJsberen kunnen meer dan een week overleven zonder te eten, terwijl ze actief blijven zoeken naar prooi.",
+        "IJsberenbaby’s zijn bij de geboorte kleiner dan een cavia, maar groeien razendsnel door moedermelk vol vet.",
+        "De lichaamstemperatuur van een ijsbeer blijft vrijwel constant, zelfs bij -40°C.",
+        "De vacht van de ijsbeer is zo isolerend dat ze niet zichtbaar zijn op infraroodcamera’s, tenzij ze net gegeten hebben.",
+        "Ondanks hun knuffelige uiterlijk zijn ijsberen een van de gevaarlijkste landroofdieren ter wereld.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>
