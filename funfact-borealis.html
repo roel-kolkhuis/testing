@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .box {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .boxbig {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 5rem 3rem;
+        border-radius: 1rem;
+        max-width: 70%;
+        text-align: center;
+      }
+
+      .heading {
+        font-size: 5rem;
+        top: 20%;
+        left: 20%;
+        transform: translate(-100vw, -50%);
+        animation: slideInLeft 1s ease-out forwards,
+          slideOutLeft 1s ease-in forwards;
+        animation-delay: 0s, 14s;
+      }
+
+      .fact {
+        font-size: 3rem;
+        top: 55%;
+        left: 50%;
+        transform: translate(100vw, -50%);
+        animation: slideInRight 1s ease-out forwards,
+          slideOutRight 1s ease-in forwards;
+        animation-delay: 0.3s, 14s;
+      }
+
+      @keyframes slideInLeft {
+        to {
+          transform: translate(0, -50%);
+        }
+      }
+
+      @keyframes slideOutLeft {
+        to {
+          transform: translate(-100vw, -50%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes slideInRight {
+        to {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      @keyframes slideOutRight {
+        to {
+          transform: translate(100vw, -50%);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box heading" id="heading">Wist je dat?</div>
+      <div class="boxbig fact" id="fact"></div>
+    </div>
+
+    <script>
+      const funFacts = [
+        "Het noorderlicht is in Lapland zichtbaar op meer dan 200 nachten per jaar. Dat is bijna 1 op de 2 dagen!",
+        "Het noorderlicht ontstaat op 90 tot 150 kilometer hoogte, boven het weer – dus het heeft geen weersinvloed.",
+        "De Sami geloofden vroeger dat je het noorderlicht niet mocht wijzen of nadoen — anders bracht je ongeluk.",
+        "De aurora borealis (noorderlicht) is geen constante: er zijn stille nachten en dan ineens explosies van kleur.",
+        "Het noorderlicht ontstaat wanneer geladen deeltjes van de zon botsen met atomen in de aardatmosfeer – vooral zuurstof en stikstof.",
+        "De kleuren van het noorderlicht hangen af van welk gas wordt geraakt. Groen voor zuurstof op lagere hoogte, rood voor grotere hoogte, en paars/blauw voor stikstofdeeltjes.",
+        "Zelfs als je het met het blote oog nauwelijks ziet, kan een camera het noorderlicht vaak veel duidelijker vastleggen.",
+        "Noorderlicht op andere planeten? Ja! Jupiter en Saturnus hebben ook aurora’s – veel krachtiger dan op aarde, door hun sterke magnetische velden.",
+        "De oudste bekende beschrijving van het noorderlicht is ruim 2000 jaar oud en komt uit China.",
+        "Noorderlicht-invloeden reiken tot in technologie: sterke aurora’s kunnen GPS-storingen en stroomuitval veroorzaken.",
+      ];
+
+      // Pick a random fact
+      const factText = funFacts[Math.floor(Math.random() * funFacts.length)];
+      document.getElementById("fact").textContent = factText;
+    </script>
+  </body>
+</html>
