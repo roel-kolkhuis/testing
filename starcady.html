@@ -8,7 +8,7 @@
       body {
         margin: 0;
         padding: 0;
-        background: transparent;
+        background: black;
         overflow: hidden;
       }
       canvas {
@@ -25,15 +25,16 @@
     <script>
       const canvas = document.getElementById("starCanvas");
       const ctx = canvas.getContext("2d");
-      let width, height;
+      let width = 1920,
+        height = 1080;
 
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      }
+      // function resize() {
+      //   width = canvas.width = window.innerWidth;
+      //   height = canvas.height = window.innerHeight;
+      // }
 
-      window.addEventListener("resize", resize);
-      resize();
+      //window.addEventListener("resize", resize);
+      //resize();
 
       // === BACKGROUND STARS ===
       const starCount = 150;
