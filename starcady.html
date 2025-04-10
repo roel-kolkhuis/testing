@@ -8,7 +8,7 @@
       body {
         margin: 0;
         padding: 0;
-        background: black;
+        background: transparent;
         overflow: hidden;
       }
       canvas {
@@ -28,13 +28,16 @@
       let width = 1920,
         height = 1080;
 
+      canvas.height = height;
+      canvas.width = width;
+
       // function resize() {
       //   width = canvas.width = window.innerWidth;
       //   height = canvas.height = window.innerHeight;
       // }
 
-      //window.addEventListener("resize", resize);
-      //resize();
+      // window.addEventListener("resize", resize);
+      // resize();
 
       // === BACKGROUND STARS ===
       const starCount = 150;
@@ -134,12 +137,12 @@
       const shootingStars = [];
 
       function spawnShootingStar() {
-        if (Math.random() < 0.005) {
+        if (Math.random() < 0.01) {
           shootingStars.push({
             x: Math.random() * width,
             y: Math.random() * (height / 2),
-            len: Math.random() * 100 + 100,
-            speed: Math.random() * 5 + 5,
+            len: Math.random() * 100 + 10,
+            speed: Math.random() * 20 + 10,
             angle: Math.PI / 4 + Math.random() * 0.1,
             opacity: 1,
           });
@@ -149,7 +152,7 @@
       // === ANIMATION LOOP ===
       let time = 0;
       function animate() {
-        time += 0.01;
+        time += 0.025;
         ctx.clearRect(0, 0, width, height);
 
         // === MOVE BACKGROUND STARS ===
