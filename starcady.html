@@ -8,7 +8,7 @@
       body {
         margin: 0;
         padding: 0;
-        background: transparent;
+        background: black;
         overflow: hidden;
       }
       canvas {
@@ -44,7 +44,7 @@
       const stars = Array.from({ length: starCount }).map(() => ({
         x: Math.random() * 1920,
         y: Math.random() * 1080,
-        radius: Math.random() * 1.5 + 0.5,
+        radius: Math.random() * 2.5 + 0.5,
         alpha: Math.random() * 0.5 + 0.5,
         speedX: (Math.random() - 0.5) * 0.05,
         speedY: (Math.random() - 0.5) * 0.05,
@@ -152,7 +152,7 @@
       // === ANIMATION LOOP ===
       let time = 0;
       function animate() {
-        time += 0.025;
+        time += 0.04;
         ctx.clearRect(0, 0, width, height);
 
         // === MOVE BACKGROUND STARS ===
@@ -191,13 +191,13 @@
           const y2 = p2.y * height;
 
           const grad = ctx.createLinearGradient(x1, y1, x2, y2);
-          const flicker = (Math.sin(time * 3 + i) + 1) / 2;
-          grad.addColorStop(0, `rgba(20, 167, 104, ${0.2 + flicker * 0.3})`);
-          grad.addColorStop(0.5, `rgba(174, 242, 216, ${0.6 + flicker * 0.4})`);
-          grad.addColorStop(1, `rgba(20, 167, 104, ${0.2 + flicker * 0.3})`);
+          const flicker = (Math.sin(time * 1 + i) + 1) / 2;
+          grad.addColorStop(0, `rgba(20, 167, 104, ${0.1 + flicker * 0.3})`);
+          grad.addColorStop(0.5, `rgba(174, 242, 216, ${0.1 + flicker * 0.8})`);
+          grad.addColorStop(1, `rgba(20, 167, 104, ${0.1 + flicker * 0.3})`);
 
           ctx.strokeStyle = grad;
-          ctx.lineWidth = 4.5;
+          ctx.lineWidth = 10;
           ctx.beginPath();
           ctx.moveTo(x1, y1);
           ctx.lineTo(x2, y2);
