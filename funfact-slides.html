@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fun Fact Slide</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+      }
+
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 2rem 3rem;
+        border-radius: 1.5rem;
+        max-width: 80%;
+        text-align: center;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+        animation: fadeInUp 1s ease-out forwards,
+          fadeOutDown 1s ease-in forwards;
+        animation-delay: 0s, 19s;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.5rem;
+        line-height: 1.4;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      @keyframes fadeOutDown {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -30%) scale(0.95);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="factBox">
+      <h1>Did you know?</h1>
+      <p id="factText">Loading...</p>
+    </div>
+
+    <script>
+      const facts = [
+        "Santa Claus is based on St. Nicholas, a real person from what is now Turkey.",
+        "In Lapland, the sun doesn't rise for up to 50 days during winter.",
+        "Reindeer antlers are made of bone and grow back every year.",
+        "The Northern Lights (Aurora Borealis) are visible almost every night in winter.",
+        "Lapland covers almost one-third of Finland’s total area.",
+      ];
+
+      function getRandomFact() {
+        return facts[Math.floor(Math.random() * facts.length)];
+      }
+
+      window.onload = () => {
+        const factText = document.getElementById("factText");
+        factText.textContent = getRandomFact();
+      };
+    </script>
+  </body>
+</html>
