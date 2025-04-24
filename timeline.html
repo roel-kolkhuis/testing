@@ -89,15 +89,6 @@
         color: #c0c0c0;
       }
 
-      .timeline-entry time {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #b8b7b7;
-        display: inline-block;
-        position: relative;
-        margin: 5px 10px 0px 10px;
-      }
-
       .card-date {
         position: relative;
         height: 30px;
@@ -172,8 +163,8 @@
         background: #4caf50;
         color: white;
         border-radius: 20px;
-        font-size: 1.8rem;
-        font-weight: bold;
+        font-size: 2rem;
+        font-weight: bolder;
         text-align: center;
         z-index: 2;
         opacity: 0;
@@ -388,6 +379,12 @@
           title: "Jubileumjaar",
           text: "Een jaar vol mooie momenten en een reis naar Lapland.",
         },
+        {
+          img: "img/flipperkast.png",
+          date: "08-04-2025",
+          title: "Flipperkast in de Barcady",
+          text: "Fun op de groene werkvloer!",
+        },
       ];
 
       const timelineContent = document.getElementById("timelineContent");
@@ -418,9 +415,8 @@
         const entry = document.createElement("div");
         entry.className = `timeline-entry ${i % 2 === 0 ? "left" : "right"}`;
         entry.innerHTML = `
-        <div class="card-date"><time>${item.date}</time></div>
         <div class="image-wrapper">
-          <img src="${item.img}" alt="${item.title}" />
+          <img src="${item.img}" alt="${item.title}"/>
         </div>
         <h3>${item.title}</h3>
         <p>${item.text}</p>
